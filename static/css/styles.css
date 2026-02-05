@@ -384,3 +384,31 @@ body {
         right: -8px;
     }
 }
+
+/* ===== NAVBAR BOTONES MOBILE ===== */
+
+@media (max-width: 768px) {
+
+    .nav-link-custom {
+        background: rgba(255,255,255,0.08);
+        padding: 10px 14px;
+        border-radius: 8px;
+        text-align: center;
+        width: 100%;
+        font-weight: 600;
+    }
+
+    .navbar .btn-primary {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    .navbar .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 10px !important;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
