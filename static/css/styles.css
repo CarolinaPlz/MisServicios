@@ -29,11 +29,21 @@ body {
 .logo-navbar { height: 38px; }
 
 .nav-link-custom {
+    display: inline-block;
     background: rgba(255,255,255,0.08);
-    padding: 10px 14px;
+    padding: 10px 16px;
     border-radius: 8px;
     font-weight: 600;
     text-align: center;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.nav-link-custom:hover {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    text-decoration: none;
 }
 
 /* ================= BOTONES ================= */
@@ -409,11 +419,5 @@ body {
     }
 }
 
-.nav-link-custom {
-    background: rgba(255,255,255,0.08);
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
-}
+
 
