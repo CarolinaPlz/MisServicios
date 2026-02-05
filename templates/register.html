@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block page_header %}
+    {% set titulo = "Registro de usuario" %}
+    {% set subtitulo = "Creá tu cuenta en MisServicios" %}
+    {% include "components/page_header.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+
+    <form method="post" enctype="multipart/form-data">
+        <input class="form-control mb-3" name="nombre" placeholder="Nombre" required>
+        <input class="form-control mb-3" name="email" type="email" placeholder="Email" required>
+
+        <select class="form-control mb-3" name="rol" required>
+            <option value="cliente">Cliente</option>
+            <option value="prestador">Prestador</option>
+        </select>
+
+        <input class="form-control mb-4" name="password" type="password" placeholder="Contraseña" required>
+        <div class="mb-3">
+            <label class="form-label">Foto de perfil</label>
+            <input type="file" name="imagen" class="form-control">
+        </div>
+
+        <button class="btn btn-primary w-100">Registrarse</button>
+    </form>
+</div>
+{% endblock %}
+

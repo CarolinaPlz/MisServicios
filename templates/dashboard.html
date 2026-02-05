@@ -1,0 +1,170 @@
+{% from "components/estrellas.html" import render_estrellas %}
+{% extends "base.html" %}
+{% block page_header %}
+    {% set titulo = "Mi Panel" %}
+    {% set subtitulo = "Gestioná tus servicios y calificaciones" %}
+    {% include "components/page_header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    {% if usuario.rol == 'cliente' %}
+    <!-- DASHBOARD CLIENTE -->
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Buscar Servicios</h5>
+                <p class="card-text">Explorar prestadores disponibles</p>
+                <a href="{{ url_for('servicios') }}" class="btn btn-primary btn-sm">Ver servicios</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Mis solicitudes</h5>
+                <p class="card-text">Trabajos que pediste</p>
+                <a href="{{ url_for('mis_solicitudes') }}"
+                class="btn btn-primary btn-sm">
+                Ver solicitudes
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Mis Calificaciones</h5>
+                <p class="card-text">Ver servicios calificados</p>
+                <a href="{{ url_for('mis_calificaciones') }}" class="btn btn-primary btn-sm">
+                    Ver calificaciones
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% elif usuario.rol == 'prestador' %}
+    <!-- DASHBOARD PRESTADOR -->
+     <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title position-relative">
+                    Solicitudes
+
+                    {% if pendientes > 0 %}
+                        <span class="badge-notif">
+                            {{ pendientes }}
+                        </span>
+                    {% endif %}
+                </h5>
+                <p class="card-text">Pedidos de clientes</p>
+                <a href="{{ url_for('ver_solicitudes') }}"
+                class="btn btn-primary btn-sm">
+                Ver solicitudes
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Mi Perfil</h5>
+                <p class="card-text">Editar información del servicio</p>
+                <a href="{{ url_for('editar_perfil') }}" class="btn btn-primary btn-sm">Editar perfil</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Servicios</h5>
+                <p class="card-text">Crear un servicio a brindar</p>
+                 <a href="{{ url_for('nuevo_servicio') }}" class="btn btn-primary btn-sm">Crear servicio</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Calificaciones Recibidas</h5>
+                <p class="card-text">Ver opiniones de clientes</p>
+                <a href="{{ url_for('mis_calificaciones') }}" class="btn btn-primary btn-sm">
+                    Ver calificaciones
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{% if usuario.rol == 'prestador' %}
+
+    <hr style="width: 80px; margin: 10px auto; border-top: 3px solid #021952;">
+
+    <h4 class="mb-3">Mis servicios publicados</h4>
+
+    {% if servicios %}
+        <div class="row">
+            {% for servicio in servicios %}
+                <div class="col-md-4 mb-3">
+                    <div class="card servicio-card mb-3">
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="card-title mb-1">
+                                        {{ servicio.titulo }}
+                                    </h5>
+
+                                    {% if servicio.promedio_estrellas() %}
+                                        <div class="estrellas-card">
+                                            {{ render_estrellas(servicio.promedio_estrellas()) }}
+                                        </div>
+                                    {% else %}
+                                        <span class="badge bg-secondary">
+                                            Sin calificaciones
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <p class="card-text mt-2">
+                                {{ servicio.descripcion }}
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="badge bg-primary">
+                                    {{ servicio.categoria }}
+                                </span>
+
+                                <a
+                                    href="{{ url_for('editar_servicio', servicio_id=servicio.id) }}"
+                                    class="btn btn-outline-primary btn-sm"
+                                >
+                                    ✏️ Editar
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">
+            Aún no publicaste servicios.
+        </p>
+    {% endif %}
+
+{% endif %}
+
+
+{% endblock %}
+
+

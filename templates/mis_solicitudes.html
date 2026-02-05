@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    {% set titulo = "Mis solicitudes" %}
+    {% set subtitulo = "Seguimiento de tus pedidos" %}
+    {% include "components/page_header.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if solicitudes %}
+<div class="row g-4">
+    {% for s in solicitudes %}
+    <div class="col-md-6">
+        <div class="card servicio-card h-100">
+            <div class="card-body d-flex flex-column">
+
+                <h5 class="card-title">
+                    {{ s.servicio.titulo }}
+                </h5>
+
+                <p class="card-text">
+                    {{ s.descripcion }}
+                </p>
+
+                <div class="mt-auto pt-3">
+
+                    {% if s.estado == 'realizado' %}
+                        <a href="{{ url_for('calificar_trabajo', solicitud_id=s.id) }}"
+                           class="btn btn-primary btn-sm">
+                            Calificar servicio
+                        </a>
+
+                    {% else %}
+                        <span class="badge bg-secondary">
+                            Estado: {{ s.estado }}
+                        </span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted">Aún no realizaste solicitudes.</p>
+{% endif %}
+
+{% endblock %}

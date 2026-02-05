@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    {% set titulo = "Calificar servicio" %}
+    {% set subtitulo = solicitud.servicio.titulo %}
+    {% include "components/page_header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+    {% from "components/estrellas.html" import estrellas_input %}
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Precio</label>
+            {{ estrellas_input('precio') }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Calidad del servicio</label>
+            {{ estrellas_input('calidad') }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Amabilidad del prestador</label>
+            {{ estrellas_input('amabilidad') }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comentario</label>
+            <textarea name="comentario" class="form-control"></textarea>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-primary">
+                Enviar calificación
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
