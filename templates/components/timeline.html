@@ -1,0 +1,44 @@
+{% macro timeline(estado) %}
+
+{% set orden = {
+    'pendiente': 1,
+    'aceptado': 2,
+    'realizado': 3,
+    'calificado': 4,
+    'rechazado': 4
+} %}
+
+{% set actual = orden.get(estado, 1) %}
+
+<div class="timeline">
+
+    <div class="timeline-step pendiente {% if actual >= 1 %}activo{% endif %}">
+        <div class="timeline-dot"></div>
+        Pendiente
+    </div>
+
+    <div class="timeline-step aceptado {% if actual >= 2 %}activo{% endif %}">
+        <div class="timeline-dot"></div>
+        Aceptado
+    </div>
+
+    <div class="timeline-step realizado {% if actual >= 3 %}activo{% endif %}">
+        <div class="timeline-dot"></div>
+        Realizado
+    </div>
+
+    <div class="timeline-step calificado {% if actual >= 4 and estado != 'rechazado' %}activo{% endif %}">
+        <div class="timeline-dot"></div>
+        Calificado
+    </div>
+
+    {% if estado == 'rechazado' %}
+    <div class="timeline-step rechazado activo">
+        <div class="timeline-dot"></div>
+        Rechazado
+    </div>
+    {% endif %}
+
+</div>
+
+{% endmacro %}
