@@ -412,3 +412,27 @@ body {
         margin-top: 10px;
     }
 }
+
+/* ===== NAVBAR MOBILE CENTRADO ===== */
+
+@media (max-width: 768px) {
+
+    .navbar .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .logo-navbar {
+        height: 44px;
+    }
+
+    .logo-text {
+        font-size: 22px;
+    }
+}
