@@ -1,5 +1,5 @@
 {# ===================================== #}
-{# COMPONENTE: ESTRELLAS CON ICONOS PRO #}
+{# COMPONENTE: ESTRELLAS VISUALES #}
 {# ===================================== #}
 
 {% macro render_estrellas(promedio) %}
@@ -8,26 +8,25 @@
     {% set media = 1 if promedio - enteras >= 0.5 else 0 %}
     {% set vacias = 5 - enteras - media %}
 
-    <div class="estrellas-pro">
+    <div class="estrellas estrellas-card">
 
-        {# Estrellas llenas #}
         {% for _ in range(enteras) %}
-            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill estrella activa"></i>
         {% endfor %}
 
-        {# Media estrella #}
         {% if media %}
-            <i class="bi bi-star-half"></i>
+            <i class="bi bi-star-half estrella activa"></i>
         {% endif %}
 
-        {# Vacías #}
         {% for _ in range(vacias) %}
-            <i class="bi bi-star"></i>
+            <i class="bi bi-star estrella"></i>
         {% endfor %}
 
     </div>
 
 {% endmacro %}
+
+
 
 {# ===================================== #}
 {# INPUT DE ESTRELLAS CLICKEABLES #}
@@ -35,7 +34,7 @@
 
 {% macro estrellas_input(nombre) %}
 
-<div class="estrellas-input" data-name="{{ nombre }}">
+<div class="estrellas-input d-flex gap-2" data-name="{{ nombre }}">
     {% for i in range(1,6) %}
         <i class="bi bi-star estrella-click" data-value="{{ i }}"></i>
     {% endfor %}

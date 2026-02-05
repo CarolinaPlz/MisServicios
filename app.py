@@ -213,31 +213,18 @@ def servicios():
 # API BUSCADOR DE SERVICIOS (AJAX)
 # ==========================================
 @app.route('/api/buscar_servicios')
-def api_buscar_servicios():
+def buscar_servicios():
+    q = request.args.get('q', '')
 
-    query = request.args.get('q', '')
-    query_norm = normalizar(query)
+    servicios = Servicio.query.filter(
+        Servicio.titulo.ilike(f"%{q}%") |
+        Servicio.categoria.ilike(f"%{q}%")
+    ).all()
 
-    servicios = Servicio.query.all()
-    resultados = []
-
-    for s in servicios:
-        titulo_norm = normalizar(s.titulo)
-        categoria_norm = normalizar(s.categoria)
-
-        if query_norm in titulo_norm or query_norm in categoria_norm:
-
-            promedio = s.usuario.promedio_estrellas()
-
-            resultados.append({
-                "titulo": s.titulo,
-                "descripcion": s.descripcion,
-                "categoria": s.categoria,
-                "prestador": s.usuario.nombre,
-                "promedio": promedio if promedio else "Sin calificaciones"
-            })
-
-    return jsonify(resultados)
+    return render_template(
+        "components/_cards_servicios.html",
+        servicios=servicios
+    )
 
 # --------------------
 # CALIFICAR SERVICIO
@@ -523,9 +510,7 @@ def mis_solicitudes():
 # --------------------
 # EJECUCIÓN
 # --------------------
-import os
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
 

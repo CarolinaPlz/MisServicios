@@ -17,53 +17,55 @@
 {% block content %}
 
 {% if calificaciones %}
-    <div class="row">
+    <div class="row g-4">
         {% for c in calificaciones %}
-            <div class="col-md-6 mb-4">
-            <div class="card servicio-card h-100 shadow-sm">
-                <div class="card-body d-flex flex-column">
+            <div class="col-12 col-lg-6">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body d-flex flex-column">
 
-                    <div class="mb-2">
-                        <h5 class="card-title mb-1">
-                            {{ c.servicio.titulo }}
-                        </h5>
-                        <p class="text-muted small mb-0">
-                            Cliente: {{ c.cliente.nombre }}
-                        </p>
+                        <div class="mb-3">
+                            <h5 class="mb-1">{{ c.servicio.titulo }}</h5>
+                            <p class="text-muted small mb-0">
+                                Cliente: {{ c.cliente.nombre }}
+                            </p>
+                        </div>
+
+                        <!-- Ratings -->
+                        <div class="rating-row my-3">
+                            <div class="rating-item">
+                                ⭐ <span>Precio</span>
+                                <strong data-value="{{ c.precio }}">{{ c.precio }}</strong>
+                            </div>
+                            <div class="rating-item">
+                                ⭐ <span>Calidad</span>
+                                <strong data-value="{{ c.calidad }}">{{ c.calidad }}</strong>
+                            </div>
+                            <div class="rating-item">
+                                ⭐ <span>Amabilidad</span>
+                                <strong data-value="{{ c.amabilidad }}">{{ c.amabilidad }}</strong>
+                            </div>
+                        </div>
+
+                        <!-- Comentario -->
+                        {% if c.comentario %}
+                            <p class="comentario mt-3">
+                                “{{ c.comentario }}”
+                            </p>
+                        {% else %}
+                            <p class="text-muted small mt-3">
+                                Sin comentario.
+                            </p>
+                        {% endif %}
+
                     </div>
-
-                    <div class="rating-row my-3">
-                        <div class="rating-item">
-                            ⭐ <span>Precio</span>
-                            <strong data-value="{{ c.precio }}">{{ c.precio }}</strong>
-                        </div>
-                        <div class="rating-item">
-                            ⭐ <span>Calidad</span>
-                            <strong data-value="{{ c.calidad }}">{{ c.calidad }}</strong>
-                        </div>
-                        <div class="rating-item">
-                            ⭐ <span>Amabilidad</span>
-                            <strong data-value="{{ c.amabilidad }}">{{ c.amabilidad }}</strong>
-                        </div>
-                    </div>
-
-                    {% if c.comentario %}
-                        <p class="comentario mt-auto">
-                            “{{ c.comentario }}”
-                        </p>
-                    {% else %}
-                        <p class="text-muted small mt-auto">
-                            Sin comentario.
-                        </p>
-                    {% endif %}
-
                 </div>
-            </div>
             </div>
         {% endfor %}
     </div>
 {% else %}
-    <p class="text-muted">Aún no hay calificaciones.</p>
+    <p class="text-muted text-center">
+        Aún no hay calificaciones.
+    </p>
 {% endif %}
 
 {% endblock %}

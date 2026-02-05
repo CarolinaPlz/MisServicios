@@ -1,9 +1,15 @@
-<div class="text-center mb-5">
-  <h2 class="fw-bold">{{ titulo }}</h2>
+<div class="container text-center px-3 mb-5 page-header">
+
+  <h1 class="page-title">
+    {{ titulo }}
+  </h1>
 
   {% if subtitulo %}
-    <p class="text-muted">{{ subtitulo }}</p>
+    <p class="page-subtitle">
+      {{ subtitulo }}
+    </p>
   {% endif %}
 
-  <hr class="page-header-line">
-</div
+  <div class="page-header-line"></div>
+
+</div>

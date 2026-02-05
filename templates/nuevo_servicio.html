@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block page_header %}
     {% set titulo = "Crear nuevo servicio" %}
     {% set subtitulo = "Creá un nuevo servicio para ofrecer" %}
@@ -7,25 +8,46 @@
 
 {% block content %}
 
-<form method="post" class="card p-4 shadow">
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
 
-    <div class="mb-3">
-        <label class="form-label">Título</label>
-        <input type="text" name="titulo" class="form-control" required>
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <!-- Título -->
+                    <label class="fw-bold mb-2">Título</label>
+                    <input type="text"
+                           name="titulo"
+                           class="form-control"
+                           required>
+
+                    <!-- Descripción -->
+                    <label class="fw-bold mt-4 mb-2">Descripción</label>
+                    <textarea name="descripcion"
+                              class="form-control"
+                              rows="4"
+                              required></textarea>
+
+                    <!-- Categoría -->
+                    <label class="fw-bold mt-4 mb-2">Categoría</label>
+                    <input type="text"
+                           name="categoria"
+                           class="form-control"
+                           required>
+
+                    <!-- Botón -->
+                    <button class="btn btn-primary w-100 mt-4">
+                        Guardar servicio
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
     </div>
-
-    <div class="mb-3">
-        <label class="form-label">Descripción</label>
-        <textarea name="descripcion" class="form-control" rows="4" required></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Categoría</label>
-        <input type="text" name="categoria" class="form-control" required>
-    </div>
-
-    <button class="btn btn-primary">Guardar servicio</button>
-
-</form>
+</div>
 
 {% endblock %}

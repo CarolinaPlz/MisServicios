@@ -1,6 +1,34 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Bienvenida a MisServicios</h2>
-<a href="/login" class="btn btn-primary">Iniciar sesión</a>
-<a href="/register" class="btn btn-secondary">Registrarse</a>
+
+<div class="row justify-content-center text-center mt-5">
+    <div class="col-12 col-md-8 col-lg-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body py-5">
+
+                <h1 class="fw-bold mb-3">Bienvenida a MisServicios</h1>
+
+                <p class="text-muted mb-4">
+                    Conectá clientes con prestadores de servicios de forma simple,
+                    rápida y confiable.
+                </p>
+
+                <div class="d-grid gap-3">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                        Iniciar sesión
+                    </a>
+
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">
+                        Registrarse
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

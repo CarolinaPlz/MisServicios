@@ -1,3 +1,4 @@
+{% from "components/estrellas.html" import render_estrellas %}
 {% extends "base.html" %}
 
 {% block page_header %}
@@ -10,51 +11,41 @@
 
 <div class="row g-4">
   {% for s in servicios %}
-  <div class="col-md-4">
+  <div class="col-12 col-sm-6 col-lg-4">
 
-    <div class="card servicio-card h-100">
+    <div class="card h-100 shadow-sm">
       <div class="card-body d-flex flex-column">
 
-        <!-- TÍTULO -->
-        <h5 class="card-title mb-1">
-            {{ s.titulo }}
-        </h5>
+        <!-- Título -->
+        <h5 class="mb-1">{{ s.titulo }}</h5>
 
-        <!-- ESTRELLAS -->
+        <!-- Estrellas reales -->
         {% if s.promedio_estrellas() %}
-            <div class="estrellas-card">
-                ⭐ {{ s.promedio_estrellas() }}
-            </div>
+            {{ render_estrellas(s.promedio_estrellas()) }}
         {% else %}
-            <span class="badge bg-secondary mb-2">
-                Sin calificaciones
-            </span>
+            <span class="text-muted small">Sin calificaciones</span>
         {% endif %}
 
-        <!-- DESCRIPCIÓN -->
-        <p class="card-text mt-2">
+        <!-- Descripción -->
+        <p class="card-text mt-2 flex-grow-1">
             {{ s.descripcion }}
         </p>
 
-        <!-- CATEGORÍA -->
-        <div class="mt-3">
-            <span class="badge bg-primary">
-                {{ s.categoria }}
-            </span>
-        </div>
+        <!-- Categoría -->
+        <span class="badge bg-primary mt-3">
+            {{ s.categoria }}
+        </span>
 
-        <!-- FOOTER -->
-        <div class="mt-auto text-center pt-4">
-
-            <p class="text-muted mb-2" style="font-size: 0.85rem;">
+        <!-- Footer -->
+        <div class="mt-4 text-center">
+            <p class="text-muted small mb-2">
                 Iniciá sesión para interactuar con este servicio
             </p>
 
             <a href="{{ url_for('login') }}"
-               class="btn btn-outline-primary btn-sm">
+               class="btn btn-outline-primary w-100">
                 Ver más
             </a>
-
         </div>
 
       </div>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "components/estrellas.html" import estrellas_input %}
 
 {% block page_header %}
     {% set titulo = "Calificar servicio" %}
@@ -8,38 +9,44 @@
 
 {% block content %}
 
-<div class="form-container">
-    {% from "components/estrellas.html" import estrellas_input %}
-    <form method="POST">
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
 
-        <div class="mb-3">
-            <label class="form-label">Precio</label>
-            {{ estrellas_input('precio') }}
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <!-- Precio -->
+                    <label class="fw-bold mb-2">Precio</label>
+                    {{ estrellas_input('precio') }}
+
+                    <!-- Calidad -->
+                    <label class="fw-bold mt-4 mb-2">Calidad del servicio</label>
+                    {{ estrellas_input('calidad') }}
+
+                    <!-- Amabilidad -->
+                    <label class="fw-bold mt-4 mb-2">Amabilidad del prestador</label>
+                    {{ estrellas_input('amabilidad') }}
+
+                    <!-- Comentario -->
+                    <label class="fw-bold mt-4 mb-2">Comentario</label>
+                    <textarea name="comentario"
+                              class="form-control"
+                              rows="4"
+                              placeholder="Contá tu experiencia..."></textarea>
+
+                    <!-- Botón -->
+                    <button class="btn btn-primary w-100 mt-4">
+                        Enviar calificación
+                    </button>
+
+                </form>
+
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Calidad del servicio</label>
-            {{ estrellas_input('calidad') }}
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Amabilidad del prestador</label>
-            {{ estrellas_input('amabilidad') }}
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Comentario</label>
-            <textarea name="comentario" class="form-control"></textarea>
-        </div>
-
-        <div class="text-center mt-4">
-            <button class="btn btn-primary">
-                Enviar calificación
-            </button>
-        </div>
-
-    </form>
-
+    </div>
 </div>
 
 {% endblock %}

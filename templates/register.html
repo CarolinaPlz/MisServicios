@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block page_header %}
     {% set titulo = "Registro de usuario" %}
     {% set subtitulo = "Creá tu cuenta en MisServicios" %}
@@ -6,25 +7,60 @@
 {% endblock %}
 
 {% block content %}
-<div class="form-container">
 
-    <form method="post" enctype="multipart/form-data">
-        <input class="form-control mb-3" name="nombre" placeholder="Nombre" required>
-        <input class="form-control mb-3" name="email" type="email" placeholder="Email" required>
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
 
-        <select class="form-control mb-3" name="rol" required>
-            <option value="cliente">Cliente</option>
-            <option value="prestador">Prestador</option>
-        </select>
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-        <input class="form-control mb-4" name="password" type="password" placeholder="Contraseña" required>
-        <div class="mb-3">
-            <label class="form-label">Foto de perfil</label>
-            <input type="file" name="imagen" class="form-control">
+                <form method="POST" enctype="multipart/form-data">
+
+                    <!-- Nombre -->
+                    <label class="fw-bold mb-2">Nombre</label>
+                    <input class="form-control"
+                           name="nombre"
+                           placeholder="Tu nombre"
+                           required>
+
+                    <!-- Email -->
+                    <label class="fw-bold mt-4 mb-2">Email</label>
+                    <input class="form-control"
+                           name="email"
+                           type="email"
+                           placeholder="tu@email.com"
+                           required>
+
+                    <!-- Rol -->
+                    <label class="fw-bold mt-4 mb-2">Rol</label>
+                    <select class="form-control" name="rol" required>
+                        <option value="cliente">Cliente</option>
+                        <option value="prestador">Prestador</option>
+                    </select>
+
+                    <!-- Contraseña -->
+                    <label class="fw-bold mt-4 mb-2">Contraseña</label>
+                    <input class="form-control"
+                           name="password"
+                           type="password"
+                           placeholder="********"
+                           required>
+
+                    <!-- Foto -->
+                    <label class="fw-bold mt-4 mb-2">Foto de perfil (opcional)</label>
+                    <input type="file" name="imagen" class="form-control">
+
+                    <!-- Botón -->
+                    <button class="btn btn-primary w-100 mt-4">
+                        Registrarse
+                    </button>
+
+                </form>
+
+            </div>
         </div>
 
-        <button class="btn btn-primary w-100">Registrarse</button>
-    </form>
+    </div>
 </div>
-{% endblock %}
 
+{% endblock %}

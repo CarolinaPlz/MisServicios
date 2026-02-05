@@ -11,57 +11,55 @@
 {% if solicitudes %}
 <div class="row g-4">
     {% for s in solicitudes %}
-    <div class="col-md-6">
-        <div class="card servicio-card h-100">
+    <div class="col-12 col-lg-6">
+        <div class="card h-100 shadow-sm">
             <div class="card-body d-flex flex-column">
 
-                <h5 class="card-title">
+                <h5 class="mb-1">
                     {{ s.servicio.titulo }}
                 </h5>
 
-                <p class="text-muted mb-2">
+                <p class="text-muted small mb-2">
                     Cliente: {{ s.cliente.nombre }}
                 </p>
 
-                <p class="card-text">
+                <p class="card-text flex-grow-1">
                     {{ s.descripcion }}
                 </p>
 
                 {% if s.archivo %}
-                    <div class="mb-3">
-                        <a href="{{ url_for('static', filename='uploads/' + s.archivo) }}"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            Ver archivo adjunto
-                        </a>
-                    </div>
+                    <a href="{{ url_for('static', filename='uploads/' + s.archivo) }}"
+                       target="_blank"
+                       class="btn btn-outline-primary w-100 mt-2">
+                        Ver archivo adjunto
+                    </a>
                 {% endif %}
 
-                <!-- ACCIONES SEGÚN ESTADO -->
-                <div class="mt-auto pt-3 d-flex gap-2">
+                <!-- Acciones -->
+                <div class="mt-3 d-grid gap-2">
 
                     {% if s.estado == 'pendiente' %}
 
                         <a href="{{ url_for('gestionar_solicitud', solicitud_id=s.id, accion='aceptar') }}"
-                           class="btn btn-primary btn-sm">
+                           class="btn btn-primary">
                             Aceptar
                         </a>
 
                         <a href="{{ url_for('gestionar_solicitud', solicitud_id=s.id, accion='rechazar') }}"
-                           class="btn btn-primary btn-sm">
+                           class="btn btn-outline-primary">
                             Rechazar
                         </a>
 
                     {% elif s.estado == 'aceptado' %}
 
                         <a href="{{ url_for('gestionar_solicitud', solicitud_id=s.id, accion='realizado') }}"
-                           class="btn btn-primary btn-sm">
+                           class="btn btn-primary">
                             Marcar como realizado
                         </a>
 
                     {% else %}
 
-                        <span class="badge bg-secondary">
+                        <span class="badge bg-primary text-center">
                             Estado: {{ s.estado }}
                         </span>
 
@@ -75,7 +73,9 @@
     {% endfor %}
 </div>
 {% else %}
-<p class="text-muted">Aún no recibiste solicitudes.</p>
+<p class="text-muted text-center">
+    Aún no recibiste solicitudes.
+</p>
 {% endif %}
 
 {% endblock %}

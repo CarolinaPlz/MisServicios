@@ -1,51 +1,53 @@
 {% extends "base.html" %}
+
 {% block page_header %}
     {% set titulo = "Editar Servicio" %}
-    {% set subtitulo = "Edita tu servicio" %}
+    {% set subtitulo = "Editá la información de tu servicio" %}
     {% include "components/page_header.html" %}
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="form-container">
-        <form method="post">
-            <div class="mb-3">
-                <label class="form-label">Título</label>
-                <input
-                    type="text"
-                    name="titulo"
-                    class="form-control"
-                    value="{{ servicio.titulo }}"
-                    required
-                >
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <!-- Título -->
+                    <label class="fw-bold mb-2">Título</label>
+                    <input type="text"
+                           name="titulo"
+                           class="form-control"
+                           value="{{ servicio.titulo }}"
+                           required>
+
+                    <!-- Descripción -->
+                    <label class="fw-bold mt-4 mb-2">Descripción</label>
+                    <textarea name="descripcion"
+                              class="form-control"
+                              rows="4"
+                              required>{{ servicio.descripcion }}</textarea>
+
+                    <!-- Categoría -->
+                    <label class="fw-bold mt-4 mb-2">Categoría</label>
+                    <input type="text"
+                           name="categoria"
+                           class="form-control"
+                           value="{{ servicio.categoria }}"
+                           required>
+
+                    <!-- Botón -->
+                    <button class="btn btn-primary w-100 mt-4">
+                        Guardar cambios
+                    </button>
+
+                </form>
+
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Descripción</label>
-                <textarea
-                    name="descripcion"
-                    class="form-control"
-                    rows="4"
-                    required
-                >{{ servicio.descripcion }}</textarea>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Categoría</label>
-                <input
-                    type="text"
-                    name="categoria"
-                    class="form-control"
-                    value="{{ servicio.categoria }}"
-                    required
-                >
-            </div>
-
-            <button class="btn btn-primary w-100">
-                Guardar cambios
-            </button>
-
-        </form>
+        </div>
 
     </div>
 </div>
