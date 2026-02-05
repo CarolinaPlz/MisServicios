@@ -16,34 +16,41 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
 
-        <!-- fila principal -->
-        <div class="w-100 d-flex align-items-center">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold"
+           href="{% if current_user.is_authenticated %}
+                    {{ url_for('dashboard') }}
+                 {% else %}
+                    {{ url_for('index') }}
+                 {% endif %}">
+            <img src="{{ url_for('static', filename='img/logo-icon.png') }}"
+                 class="logo-navbar">
+            <span class="logo-text">MisServicios</span>
+        </a>
 
-            <!-- LOGO -->
-            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold"
-               href="{% if current_user.is_authenticated %}
-                        {{ url_for('dashboard') }}
-                     {% else %}
-                        {{ url_for('index') }}
-                     {% endif %}">
-                <img src="{{ url_for('static', filename='img/logo-icon.png') }}"
-                     class="logo-navbar">
-                <span class="logo-text">MisServicios</span>
-            </a>
+        <!-- Botón hamburguesa (solo mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- BOTONES -->
+        <!-- Contenido colapsable -->
+        <div class="collapse navbar-collapse justify-content-lg-end text-center" id="navbarContent">
+
             {% if current_user.is_authenticated %}
-            <div class="ms-auto d-flex align-items-center gap-3">
+            <div class="d-flex flex-column flex-lg-row align-items-center gap-3 mt-3 mt-lg-0">
                 ...
             </div>
             {% else %}
-            <div class="auth-buttons ms-auto d-flex align-items-center gap-3">
+            <div class="d-flex flex-column flex-lg-row align-items-center gap-3 mt-3 mt-lg-0">
+
                 <a href="{{ url_for('login') }}" class="nav-link-custom">
                     Iniciar sesión
                 </a>
+
                 <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">
                     Registrarse
                 </a>
+
             </div>
             {% endif %}
 

@@ -393,6 +393,7 @@ body {
         flex-direction: column;
         width: 100%;
         margin-top: 12px;
+        align-items: center;
     }
 
     .auth-buttons a {
@@ -405,9 +406,10 @@ body {
     }
 }
 
-.auth-buttons .nav-link-custom {
+.nav-link-custom {
     background: rgba(255,255,255,0.08);
     padding: 10px 14px;
     border-radius: 8px;
     font-weight: 600;
+    text-align: center;
 }
