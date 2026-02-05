@@ -391,48 +391,23 @@ body {
 
     .auth-buttons {
         flex-direction: column;
-        gap: 10px !important;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
-    .auth-buttons .nav-link-custom {
-        background: rgba(255,255,255,0.08);
-        padding: 10px 14px;
-        border-radius: 8px;
+    .auth-buttons a {
+        width: 100%;
         text-align: center;
-        width: 100%;
-        font-weight: 600;
-    }
-
-    .auth-buttons .btn-primary {
-        width: 100%;
-        padding: 10px 14px;
-        font-size: 14px;
-        border-radius: 8px;
-    }
-}
-
-/* ===== NAVBAR MOBILE CENTRADO ===== */
-
-@media (max-width: 768px) {
-
-    .navbar .container {
-        flex-direction: column;
-        align-items: center;
     }
 
     .navbar-brand {
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 10px;
+        margin: 0 auto;
     }
+}
 
-    .logo-navbar {
-        height: 44px;
-    }
-
-    .logo-text {
-        font-size: 22px;
-    }
+.auth-buttons .nav-link-custom {
+    background: rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 600;
 }

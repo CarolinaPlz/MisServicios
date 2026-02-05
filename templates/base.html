@@ -14,52 +14,40 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-custom">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="container">
 
-        <!-- IZQUIERDA: Logo -->
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold"
-           href="{% if current_user.is_authenticated %}
-                    {{ url_for('dashboard') }}
-                 {% else %}
-                    {{ url_for('index') }}
-                 {% endif %}">
-            <img src="{{ url_for('static', filename='img/logo-icon.png') }}"
-                 class="logo-navbar">
-            <span class="logo-text">MisServicios</span>
-        </a>
+        <!-- fila principal -->
+        <div class="w-100 d-flex align-items-center">
 
-        <!-- DERECHA: Usuario -->
-        {% if current_user.is_authenticated %}
-        <div class="d-flex align-items-center gap-3">
+            <!-- LOGO -->
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold"
+               href="{% if current_user.is_authenticated %}
+                        {{ url_for('dashboard') }}
+                     {% else %}
+                        {{ url_for('index') }}
+                     {% endif %}">
+                <img src="{{ url_for('static', filename='img/logo-icon.png') }}"
+                     class="logo-navbar">
+                <span class="logo-text">MisServicios</span>
+            </a>
 
-            {% if current_user.imagen %}
-                <img src="{{ url_for('static', filename='uploads/' + current_user.imagen) }}"
-                     class="avatar-navbar">
+            <!-- BOTONES -->
+            {% if current_user.is_authenticated %}
+            <div class="ms-auto d-flex align-items-center gap-3">
+                ...
+            </div>
             {% else %}
-                <div class="prestador-avatar-placeholder">
-                    {{ current_user.nombre[0] }}
-                </div>
+            <div class="auth-buttons ms-auto d-flex align-items-center gap-3">
+                <a href="{{ url_for('login') }}" class="nav-link-custom">
+                    Iniciar sesión
+                </a>
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">
+                    Registrarse
+                </a>
+            </div>
             {% endif %}
 
-            <span class="text-white small">
-                Hola, {{ current_user.nombre }}
-            </span>
-
-            <a href="{{ url_for('logout') }}" class="btn btn-logout btn-sm">
-                Salir
-            </a>
         </div>
-        {% else %}
-        <div class="auth-buttons d-flex gap-3">
-            <a href="{{ url_for('login') }}" class="nav-link-custom">
-                Iniciar sesión
-            </a>
-            <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">
-                Registrarse
-            </a>
-        </div>
-        {% endif %}
-
     </div>
 </nav>
 
