@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    {% set titulo = "Ocurrió un error inesperado" %}
+    {% set subtitulo = "El sistema tuvo un problema, intentá nuevamente" %}
+    {% include "components/page_header.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <a href="{{ url_for('index') }}" class="btn btn-primary">
+        Volver al inicio
+    </a>
+</div>
+{% endblock %}

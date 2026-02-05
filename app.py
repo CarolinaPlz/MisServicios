@@ -10,18 +10,6 @@ from models import Servicio
 
 import unicodedata
 
-# ==========================================
-# NORMALIZAR TEXTO (sin acentos, lower)
-# ==========================================
-def normalizar(texto):
-    if not texto:
-        return ""
-    texto = texto.lower()
-    texto = unicodedata.normalize('NFD', texto)
-    texto = ''.join(c for c in texto if unicodedata.category(c) != 'Mn')
-    return texto
-
-
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -37,6 +25,19 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
+# =========================
+# MANEJO GLOBAL DE ERRORES
+# =========================
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("errors/404.html"), 404
+
+
+@app.errorhandler(500)
+def server_error(e):
+    db.session.rollback()
+    return render_template("errors/500.html"), 500
 
 # --------------------
 # RUTA PRINCIPAL SIN LOG
@@ -76,6 +77,17 @@ def dashboard():
         servicios=servicios,
         pendientes=pendientes
     )
+
+# ==========================================
+# NORMALIZAR TEXTO (sin acentos, lower)
+# ==========================================
+def normalizar(texto):
+    if not texto:
+        return ""
+    texto = texto.lower()
+    texto = unicodedata.normalize('NFD', texto)
+    texto = ''.join(c for c in texto if unicodedata.category(c) != 'Mn')
+    return texto
 
 # --------------------
 # REGISTRO
