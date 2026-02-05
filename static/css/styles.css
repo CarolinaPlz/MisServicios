@@ -29,8 +29,11 @@ body {
 .logo-navbar { height: 38px; }
 
 .nav-link-custom {
-    color: #fff;
-    text-decoration: none;
+    background: rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* ================= BOTONES ================= */
@@ -413,3 +416,4 @@ body {
     font-weight: 600;
     text-align: center;
 }
+
